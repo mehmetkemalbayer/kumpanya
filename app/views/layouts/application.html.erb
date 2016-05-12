@@ -22,14 +22,14 @@
        	</li>
       <% else %>
        	<li>
-       		<%= link_to('Login', new_user_session_path)  %>
+       		<%= link_to(t("login"), new_user_session_path)  %>
        	</li>
        <% end %>
     </ul>
     </div>
   </div>
 </nav>
-<%= yield %>
+
 
 </body>
 </html>
