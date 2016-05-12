@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  string{50}: 
+  string{20}: 
+  string{30}: 
+  string{50}: 
+
+two:
+  string{50}: 
+  string{20}: 
+  string{30}: 
+  string{50}: 
