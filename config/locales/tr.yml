@@ -55,4 +55,5 @@ tr:
       user:
         email: "E-Mail"
         password: "Şifre"   
+        password_confirmation: "Şifre (tekrar)"
   login: "Giriş"     

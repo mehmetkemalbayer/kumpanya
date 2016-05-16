@@ -1,10 +1,14 @@
 <table class="table">
-    <th><%= t("Campaign_name") %></th>
-    <th><%= t("Due_Date") %></th>
-    <th><%= t("Contributor") %></th>
+    <tr>
+        <th><%= t("Campaign_name") %></th>
+        <th><%= t("Due_Date") %></th>
+        <th><%= t("Contributor") %></th>
+    </tr>
     <% @popular_campaigns.each do |campaign| %>
-        <tr><%= campaign.name %></tr>
-        <tr><%= campaign.dueDate %></tr>
-        <tr><%= campaign.user_campaign_counter %></tr>
+        <tr>
+            <td><%= campaign.name %></td>
+            <td><%= campaign.due_date %></td>
+            <td><%= campaign.user_campaigns_count %></td>
+        </tr>
     <% end %>
 </table>

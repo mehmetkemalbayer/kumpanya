@@ -3,7 +3,7 @@ class Campaign < ActiveRecord::Base
 	has_many :users, through: :user_campaigns	
 	scope :active, -> { where('due_date > ?', Time.now) }
 	scope :recent, -> { order("id desc").limit(5) }
-	scope :popular, -> { order("user_campaign_counter desc").limit(5) }
+	scope :popular, -> { order("user_campaigns_count desc").limit(5) }
 	
 	def new
 		@campaign = Campaign.new(campaign_params)

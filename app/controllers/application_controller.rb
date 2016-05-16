@@ -4,10 +4,16 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
-
+  before_filter :set_current_user
  protected
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :surname, :email, :password) }
+  end
+  
+  
+
+  def set_current_user
+    UserCampaign.current_user = current_user
   end
 end
