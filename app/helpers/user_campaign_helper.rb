@@ -1,0 +1,2 @@
+module UserCampaignHelper
+end
