@@ -5,4 +5,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 	has_many :campaigns, through: :user_campaigns
   has_many :user_campaigns
+  cattr_accessor :current_user
 end

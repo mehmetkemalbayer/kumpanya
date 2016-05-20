@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_filter :authenticate_user!
   before_filter :set_current_user
  protected
 
@@ -14,6 +15,6 @@ class ApplicationController < ActionController::Base
   
 
   def set_current_user
-    UserCampaign.current_user = current_user
+    User.current_user = current_user
   end
 end

@@ -1,11 +1,52 @@
-<div class="row">
-    <div class="col-md-4">
-        <%= render "campaign/popular" %>
+
+<%= stylesheet_link_tag    'home', media: 'all', 'data-turbolinks-track' => true %>
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">                    
+                <div class="intro-text">
+                    <span class="name"><%= t("Welcome") %><%= " " %><%= User.current_user.name %></span>
+                    <hr class="star-light">
+                    
+                </div>
+                <%= link_to t("New_Campaign"), new_campaign_path, {class: "btn btn-lg btn-outline"} %>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <%= render "campaign/recent" %>
-    </div>
-    <div class="col-md-4">
-        <%= render "user_campaign/recent" %>
+</header>
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">En tutulan kumpanyalar</h3>
+                </div>
+                <div class="panel-body">
+                    <%= render "campaign/recent", locals: {campaigns: @popular_campaigns} %>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Açılan son 5 kumpanya</h3>
+                    </div>
+                    <div class="panel-body">
+                        <%= render "campaign/recent", locals: {campaigns: @recent_campaigns} %>
+                    </div>
+                </div>        
+            </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Son 5 kumpanyam</h3>
+                    </div>
+                    <div class="panel-body">
+                        <%= render "campaign/recent",  locals: {campaigns: @recent_user_campaigns } %>
+                    </div>
+                </div>        
+            </div>        
+        </div>
     </div>
 </div>

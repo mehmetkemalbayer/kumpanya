@@ -29,6 +29,7 @@
     </div>
   </div>
 </nav>
-<%= yield %>
+<body>
+  <%= content_for?(:devise_content) ? yield(:devise_content) : yield %>
 </body>
 </html>

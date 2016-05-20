@@ -1,14 +1,15 @@
-<table class="table">
-    <tr>
-        <th><%= t("Campaign_name") %></th>
-        <th><%= t("Due_Date") %></th>
-        <th><%= t("Contributor") %></th>
-    </tr>
-    <% @recent_campaigns.each do |campaign| %>
-         <tr>
-            <td><%= campaign.name %></td>
-            <td><%= campaign.due_date %></td>
-            <td><%= campaign.user_campaigns_count %></td>
-        </tr>
-    <% end %>
-</table>
+<% if locals[:campaigns].blank? %>
+    <div class="jumbotron">
+        <p>Katıldığınız aktif kumpanya bulunamamıştır.</p>            
+    </div>
+<% else %>   
+    <table class="table">                        
+        <% locals[:campaigns].each do |campaign| %>
+            <tr>
+                <td><%= campaign.name %></td>
+                <td><%= campaign.due_date.localtime.strftime '%Y-%m-%d %H:%M:%S' %></td>
+                <td><%= campaign.user_campaigns_count %></td>
+            </tr>
+        <% end %>        
+    </table>      
+ <% end %>
