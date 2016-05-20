@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :homes
-  resources :campaign
+  resources :campaigns
   devise_for :users
 
   devise_scope :user do

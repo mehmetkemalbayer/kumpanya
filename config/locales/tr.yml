@@ -61,4 +61,9 @@ tr:
   Due_Date: "Bitiş"
   Contributor: "Katılım"
   New_Campaign: "Yeni Kumpanya"
-  Welcome: "Hoşgeldİn"  
+  Welcome: "Hoşgeldİn" 
+  Congrats: "Tebrikler! Yeni kumpanya oluşturdunuz."
+  Campaign:
+    New:
+      Save: "Kaydet"
+  

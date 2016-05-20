@@ -23,7 +23,7 @@
                     <h3 class="panel-title">En tutulan kumpanyalar</h3>
                 </div>
                 <div class="panel-body">
-                    <%= render "campaign/recent", locals: {campaigns: @popular_campaigns} %>
+                    <%= render "campaigns/index", locals: {campaigns: @popular_campaigns} %>
                 </div>
             </div>
         </div>
@@ -33,7 +33,7 @@
                         <h3 class="panel-title">Açılan son 5 kumpanya</h3>
                     </div>
                     <div class="panel-body">
-                        <%= render "campaign/recent", locals: {campaigns: @recent_campaigns} %>
+                        <%= render "campaigns/index", locals: {campaigns: @recent_campaigns} %>
                     </div>
                 </div>        
             </div>
@@ -43,7 +43,7 @@
                         <h3 class="panel-title">Son 5 kumpanyam</h3>
                     </div>
                     <div class="panel-body">
-                        <%= render "campaign/recent",  locals: {campaigns: @recent_user_campaigns } %>
+                        <%= render "campaigns/index",  locals: {campaigns: @recent_user_campaigns } %>
                     </div>
                 </div>        
             </div>        
