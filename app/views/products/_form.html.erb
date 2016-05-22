@@ -1,11 +1,25 @@
-<% if (Product.first?) %> 
-    <%= options_from_collection_for_select(Product.all, :id, :name) %>
-<%else%>
-    <% form_for @product do |f| %>
+<%= form_for @user_campaign_product do |p| %>
+    <% if (@products.present?) %> 
+        <div class="form-group">
+            <%= p.label :product_id %>
+            <%= p.select :product_id, options_from_collection_for_select(@products, :id, :name), include_blank: true %>
+        </div>
+    <% end %>
+    
+    <%= p.fields_for @product do |f| %>
         <div class="form-group">
             <%= f.label :name %>
-            <%= f.text_field :name, autofocus: true, class: "form-control" %>
+            <%= f.text_field :name %>
         </div>
-        <%= f.submit t('Ekle', :default => "Ekle"), class: "btn btn-sm btn-primary" %>
     <% end %>
-<% end %>
+    <div class="form-group">
+        <%= p.label :price %>
+        <%= p.number_field :price %>
+    </div>
+    <div class="form-group">
+        <%= p.label :price_type_id %>
+        <%= p.select :price_type_id, options_from_collection_for_select(PriceType.all, :id, :name) %>
+    </div>
+    <%= p.submit t('Ekle', :default => "Ekle"), class: "btn btn-sm btn-primary" %>  
+<% end %>   
+

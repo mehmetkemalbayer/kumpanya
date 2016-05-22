@@ -1,0 +1,14 @@
+<%= form_for @user_campaign_product do |f| %>
+    <%= f.fields_for locals[:product] do |p| %>
+        <% if (@campaign.user_campaigns.first.products.present?) %> 
+            <%= options_from_collection_for_select(Product.all, :id, :name) %>
+        <%else%>
+            <div class="form-group">
+                <%= p.label :name %>
+                <%= p.text_field :name, autofocus: true, class: "form-control" %>
+            </div>
+        <% end %>   
+    <% end %>
+    
+    <%= f.submit t('Ekle', :default => "Ekle"), class: "btn btn-sm btn-primary" %>
+<% end %>

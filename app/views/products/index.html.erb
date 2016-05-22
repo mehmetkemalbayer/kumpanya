@@ -1,0 +1,15 @@
+ <div class="container">
+    <div class="row">
+        <% if flash[:notice] %>
+            <div class="alert alert-success"><%= flash[:notice] %></div>
+        <% end %>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><%= @user_campaign.campaign.name %> kumpanyasındaki ürünler</h3>
+        </div>
+        <div class="panel-body">
+            <%= render "form", locals: {campaign_product: @user_campaign_product, product: @product }%>
+        </div>
+    </div>
+ </div>
