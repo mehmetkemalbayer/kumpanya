@@ -1,0 +1,11 @@
+<% if (Product.first?) %> 
+    <%= options_from_collection_for_select(Product.all, :id, :name) %>
+<%else%>
+    <% form_for @product do |f| %>
+        <div class="form-group">
+            <%= f.label :name %>
+            <%= f.text_field :name, autofocus: true, class: "form-control" %>
+        </div>
+        <%= f.submit t('Ekle', :default => "Ekle"), class: "btn btn-sm btn-primary" %>
+    <% end %>
+<% end %>

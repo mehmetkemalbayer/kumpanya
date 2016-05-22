@@ -1,4 +1,4 @@
-class CreateUserCampaign < ActiveRecord::Migration
+class CreateUserCampaigns < ActiveRecord::Migration
   def change
     create_table :user_campaigns do |t|
       t.timestamps null: false

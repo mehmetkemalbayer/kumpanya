@@ -8,6 +8,10 @@ class Campaign < ActiveRecord::Base
 	
 	private 			 
 	def create_user_campaign
-		self.user_campaigns.create(user_id: User.current_user.id, role_id: 1 )
+	 	if(User.current_user)
+			self.user_campaigns.create(user_id: User.current_user.id, role_id: 1 )
+		else
+			self.user_campaigns.create(user_id: 1, role_id: 1 )
+		end
 	end
 end
