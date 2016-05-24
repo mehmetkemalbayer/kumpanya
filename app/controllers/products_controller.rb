@@ -1,17 +1,15 @@
 class ProductsController < ApplicationController
     def create
-        if (product_params[:product_id].blank?)
-       
-            @product = Product.new(product_params[:product])
-            @product.save
-        else
-            @product = Product.find(product_params[:product_id])
-        end
-        @user_campaign_product = UserCampaignProduct.new(user_campaign_product_params)
-        @user_campaign_product.user_campaign = UserCampaign.where(user_id: params[:user_id]).where(campaign_id: params[:campaign_id]).first
-        @user_campaign_product.product = @product
-        @user_campaign_product.save
-        redirect_to user_campaign_products_path
+        @product = Product.new(product_params)
+        @product.save
+        @campaign = Campaign.find(campaign_params[:campaign_id])
+        @campaign_product = CampaignProduct.new
+        @campaign_product.product_id = @product.id
+        @campaign_product.campaign_id = @campaign.id
+        @campaign_product.price = campaign_product_params[:campaign_product][:price]        
+        @campaign_product.price_type_id = campaign_product_params[:campaign_product][:price_type_id]
+        @campaign_product.save
+        redirect_to @campaign
     end
     def index
         @product = Product.new
@@ -22,10 +20,15 @@ class ProductsController < ApplicationController
     end
     private
 	def product_params
-		params.require(:user_campaign_product).permit(:product_id, :product => [:name])
+		params.require(:product).permit(:name)
 	end	
     
-    def user_campaign_product_params
-        params.require(:user_campaign_product).permit(:price, :price_type_id)
+    def campaign_params
+		params.permit(:campaign_id)
+    end	
+    
+    def campaign_product_params
+        params.require(:product).permit(:campaign_product=> [:price, :price_type_id])
     end
+    
 end

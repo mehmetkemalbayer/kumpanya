@@ -1,5 +1,7 @@
 class Campaign < ActiveRecord::Base
 	has_many :user_campaigns
+	has_many :campaign_products
+	has_many :products, through: :campaign_products
 	has_many :users, through: :user_campaigns	
 	has_many :products, through: :user_campaign_products
 	scope :active, -> { where('due_date > ?', Time.now) }

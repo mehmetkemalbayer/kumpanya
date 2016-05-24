@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160522164011) do
+ActiveRecord::Schema.define(version: 20160523091333) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "campaign_products", force: :cascade do |t|
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "product_id"
+    t.integer  "campaign_id"
+    t.decimal  "price"
+    t.integer  "price_type_id"
+  end
+
+  add_index "campaign_products", ["campaign_id"], name: "index_campaign_products_on_campaign_id", using: :btree
+  add_index "campaign_products", ["price_type_id"], name: "index_campaign_products_on_price_type_id", using: :btree
+  add_index "campaign_products", ["product_id"], name: "index_campaign_products_on_product_id", using: :btree
 
   create_table "campaigns", force: :cascade do |t|
     t.datetime "due_date"
@@ -107,6 +120,9 @@ ActiveRecord::Schema.define(version: 20160522164011) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "campaign_products", "campaigns"
+  add_foreign_key "campaign_products", "price_types"
+  add_foreign_key "campaign_products", "products"
   add_foreign_key "user_campaign_products", "price_types"
   add_foreign_key "user_campaign_products", "products"
   add_foreign_key "user_campaign_products", "user_campaigns"

@@ -1,0 +1,19 @@
+<%= form_for [@campaign, @product] do |p| %>    
+        <div class="form-group">
+            <%= p.label :name %>
+            <%= p.text_field :name %>
+        </div>
+    
+    <%= p.fields_for @campaign_product do |c| %>
+        <div class="form-group">
+            <%= c.label :price %>
+            <%= c.number_field :price %>
+        </div>
+        <div class="form-group">
+            <%= c.label :price_type_id %>
+            <%= c.select :price_type_id, options_from_collection_for_select(PriceType.all, :id, :name) %>
+        </div>
+    <% end %>    
+    <%= p.submit t('Ekle', :default => "Ekle"), class: "btn btn-sm btn-primary" %>  
+<% end %>   
+

@@ -1,0 +1,22 @@
+ <div class="container">
+    <div class="row">
+        <% if flash[:notice] %>
+            <div class="alert alert-success"><%= flash[:notice] %></div>
+        <% end %>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><%= Campaign.find(params[:id]).name %> kumpanyasındaki ürünler</h3>
+        </div>
+        <% if(@campaign_products.present?) %> 
+            <ul class="list-group">
+                <% @campaign_products.each do |product| %>
+                    <li class="list-group-item"><%= product.name %></li> 
+                <% end %>
+            </ul>
+        <% end %>
+        <div class="panel-body">
+            <%= render "campaign_products/form", locals: {campaign_product: @user_campaign_product, product: @product }%>
+        </div>
+    </div>
+ </div>

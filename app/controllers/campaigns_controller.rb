@@ -1,6 +1,5 @@
 class CampaignsController < ApplicationController    
     def new
-        @user = User.find(params[:user_id])
         @campaign = Campaign.new        
     end
     def create    
@@ -8,26 +7,20 @@ class CampaignsController < ApplicationController
         
         @campaign = Campaign.new(campaign_params)
 		redirect_to new_user_campaign_path unless @campaign.save
-        @user_campaign = UserCampaign.new
-        @user_campaign.campaign_id = @campaign.id
-		@user_campaign.user_id = params[:user_id]
-		@user_campaign.role_id = 1    
-        redirect_to new_user_campaign_path unless @user_campaign.save        
-        flash[:notice] = t("Congrats")
-        redirect_to user_campaign_products_path(params[:user_id], @campaign)        
-           
+               
+        flash[:notice] = t("Congrats")                
+        redirect_to @campaign   
     end
     def index
         @campaigns = Campaign.all
         
     end
     
-    def show
-        @campaign = Campaign.find(params[:id])
-        @user_campaign = UserCampaign.where(user_id: params[:user_id]).where(campaign_id: @campaign.id).first
-        puts @user_campaign.id
+    def show      
         @product = Product.new
-        @user_campaign_product = UserCampaignProduct.new(user_campaign_id: @user_campaign.id, product_id: @product.id)
+        @campaign_product = CampaignProduct.new
+        @campaign = Campaign.find(params[:id])
+        @campaign_products = Product.joins(:campaign_products).where("campaign_id = ?", @campaign.id)
     end
     
 
@@ -36,5 +29,5 @@ class CampaignsController < ApplicationController
 		params.require(:campaign).permit(:name, :due_date, :description)
 	end	
     
-
+    
 end
