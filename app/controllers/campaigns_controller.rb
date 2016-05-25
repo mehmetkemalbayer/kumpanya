@@ -20,7 +20,7 @@ class CampaignsController < ApplicationController
         @product = Product.new
         @campaign_product = CampaignProduct.new
         @campaign = Campaign.find(params[:id])
-        @campaign_products = Product.joins(:campaign_products).where("campaign_id = ?", @campaign.id)
+        @campaign_products = CampaignProduct.joins(:product).where("campaign_id = ?", @campaign.id).select("products.name, products.id, campaign_products.campaign_id, campaign_products.price, campaign_products.price_type_id")
     end
     
 
