@@ -8,7 +8,8 @@ Rails.application.routes.draw do
       root 'home#index', as: :authenticated_root      
       resources :campaigns do
         resources :products
-      end              
+      end
+      post "user_campaign/:id/product/:product_id/", to: "user_campaign_products#create", as: "add_to_basket"              
     end
     unauthenticated do
       root 'devise/sessions#new', as: :unauthenticated_root

@@ -59,10 +59,11 @@ tr:
   login: "Giriş"
   Campaign_name: "Kumpanya"
   Due_Date: "Bitiş"
-  Contributor: "Katılım"
+  Contributors: "Katılımcılar"
   New_Campaign: "Yeni Kumpanya"
   Welcome: "Hoşgeldİn" 
   Congrats: "Tebrikler! Yeni kumpanya oluşturdunuz."
+  AddToBasket: "Sepete Ekle"
   Campaign:
     New:
       Save: "Kaydet"

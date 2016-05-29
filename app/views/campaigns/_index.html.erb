@@ -1,15 +1,20 @@
 <% if locals[:campaigns].blank? %>
     <div class="jumbotron">
-        <p>Katıldığınız aktif kumpanya bulunamamıştır.</p>            
+        <p>Aktif kumpanya bulunamamıştır.</p>            
     </div>
 <% else %>   
 <br />
-    <table class="table">                        
+    <table class="table">
+        <tr>     
+            <th>Kumpanya</th>
+            <th><%= t("Due_Date") %></th>
+            <th><%= t("Contributors") %></th>
+        </tr>                   
         <% locals[:campaigns].each do |campaign| %>
             <tr>
-                <td><%= campaign.name %></td>
+                <td><%= link_to campaign.name, campaign, class: "btn btn-sm btn-primary" %></td>
                 <td><%= campaign.due_date.localtime.strftime '%Y-%m-%d %H:%M:%S' %></td>
-                <td><%= campaign.user_campaigns_count %></td>
+                <td><%= campaign.user_campaigns_count %></td>               
             </tr>
         <% end %>        
     </table>      

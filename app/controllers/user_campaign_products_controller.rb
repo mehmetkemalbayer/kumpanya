@@ -1,12 +1,12 @@
 class UserCampaignProductsController < ApplicationController
 
-    def create
-        @user_campaign_product = UserCampaignProduct.new(user_campaign_product_params)
-        @user_campaign_product.save
-        redirect_to @user_campaign_product.user_campaign.campaign
-    end
-    private
+   	def create
+        UserCampaign.find(params[:id]).user_campaign_products.create(product_id: params[:product_id])        
+		redirect_to Campaign.find(1)
+	end
+	
+	private
 	def user_campaign_product_params
-		params.require(:user_campaign_product).permit(:name, :price, :price_type_id)
-	end	
+		params.permit(:product_id, :id)
+	end
 end
