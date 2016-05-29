@@ -67,4 +67,11 @@ tr:
   Campaign:
     New:
       Save: "Kaydet"
+  activerecord:
+    errors:
+      models:
+        user_campaign_product:
+          attributes:
+            product_id:
+              taken: "Bu ürünü önceden eklediniz."
   

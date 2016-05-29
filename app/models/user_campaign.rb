@@ -6,4 +6,5 @@ class UserCampaign < ActiveRecord::Base
 	has_many :products, through: :user_campaign_products	
 	accepts_nested_attributes_for :campaign
 	scope :recent, -> {Campaign.active.recent.joins(:user_campaigns).where("user_id = ?", User.current_user.id)}
+	
 end
