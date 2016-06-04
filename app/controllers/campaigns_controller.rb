@@ -16,19 +16,24 @@ class CampaignsController < ApplicationController
         @campaigns = Campaign.all
         
     end
-    
-    def show      
-        @product = Product.new
-        @campaign_product = CampaignProduct.new
+    def update
         @campaign = Campaign.find(params[:id])
+        @campaign.update_attributes(campaign_product_params)
+        redirect_to @campaign
+    end
+    
+    def show                     
+        @campaign = Campaign.find(params[:id])
+        @product = @campaign.products.new        
         @campaign_products = CampaignProduct.joins(:product).where("campaign_id = ?", @campaign.id).select("products.name, products.id, products.id as product_id, campaign_products.product_id, campaign_products.campaign_id, campaign_products.price, campaign_products.price_type_id").all
     end
     
-
     private
 	def campaign_params
 		params.require(:campaign).permit(:name, :due_date, :description)
 	end	
-    
+    def campaign_product_params
+        params.require(:campaign).permit(:campaign_products_attributes => [:id, :price, :price_type_id, :product_attributes => [:name, :id]])
+    end
     
 end
