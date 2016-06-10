@@ -1,0 +1,25 @@
+<% if(@campaign_products.present?) %> 
+    <ul class="list-group">
+        <% @campaign_products.each do |campaignProduct| %>
+            <li class="list-group-item">
+                <%= link_to t("AddToBasket"), add_to_basket_path(UserCampaign.where(user: User.current_user.id).where(campaign_id: campaignProduct.campaign_id).first.id, campaignProduct.product_id), method: "POST",  class: "btn btn-sm btn-primary"%>
+                <%= campaignProduct.name %> -
+                <%= campaignProduct.price %>
+                    TL
+                </%>
+                <b>                            
+                <% if campaignProduct.price_type_id == 1 %>
+                    <% if campaignProduct.campaign.user_campaigns.present? %>
+                            <%= " (" + campaignProduct.campaign.user_campaigns.count.to_s %>
+                    <% else %>
+                        (0
+                    <% end %> kullanıcı için)     
+                <% else %>
+                    / adet 
+                <% end %>
+                </b>
+                
+            </li> 
+        <% end %>
+    </ul>
+<% end %>           
