@@ -1,0 +1,7 @@
+ <ul class="list-group">
+    <% @user_campaign.products.each do |userCampaignProduct| %>
+        <li class="list-group-item">            
+            <%= userCampaignProduct.name %>           
+        </li> 
+    <% end %>
+ </ul>

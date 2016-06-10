@@ -26,6 +26,8 @@ class CampaignsController < ApplicationController
         @campaign = Campaign.find(params[:id])
         @product = @campaign.products.new        
         @campaign_products = CampaignProduct.joins(:product).where("campaign_id = ?", @campaign.id).select("products.name, products.id, products.id as product_id, campaign_products.product_id, campaign_products.campaign_id, campaign_products.price, campaign_products.price_type_id").all
+        @userCampaign = UserCampaign.where("user_id = ?", User.current_user.id).where("campaign_id = ?", params[:id]).first
+        @userCampaignProduct = UserCampaign.where("user_campaign_id = ?", @userCampaign.id)
     end
     
     private
